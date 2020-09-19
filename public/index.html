@@ -3,16 +3,22 @@
     <head>
         <title>SecureColab</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--link to the css file-->
+        <link rel="stylesheet" href="main.css" type="text/css"/>
     </head>
     <body>
-        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-        <script src="/__/firebase/7.20.-/firebase-app.js"></script>
-        <!-- Initialize Firebase -->
-        <script src="/__/firebase/init.js"></script>
+        <!--Vue App-->
+        <div id='app'>
+            <div class="top-logo"><img src="waterLogo.PNG"/><b>WCSS</b></div>
+            <nav-bar></nav-bar>
+            <weekly-page v-show="home_page"></weekly-page>
+            <daily-page v-show="task_page"></daily-page>
+            <more-page v-show="assessment_job_page"></more-page>
+            <more-page v-show="groups_page"></more-page>
+        </div>
         <!--link to use vue.js-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <!--link to the javascript file-->
         <script src="main.js"></script>
-        <script src="main.css"></script>
     </body>
-
 </html>
