@@ -9,12 +9,12 @@
     <body>
         <!--Vue App-->
         <div id='app'>
-            <div class="top-logo"><img src="waterLogo.PNG"/><b>WCSS</b></div>
             <nav-bar></nav-bar>
-            <weekly-page v-show="home_page"></weekly-page>
-            <daily-page v-show="task_page"></daily-page>
-            <more-page v-show="assessment_job_page"></more-page>
-            <more-page v-show="groups_page"></more-page>
+            <home-page v-show="home_page"></home-page>
+            <task-page v-show="task_page"></task-page>
+            <assessment-page v-show="assessment_job_page"></assessment-page>
+            <groups-page v-show="groups_page"></groups-page>
+            <alert-page v-show="alert_page"></alert-page>
         </div>
         <!--link to use vue.js-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

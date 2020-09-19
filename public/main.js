@@ -1,12 +1,78 @@
 // file to put the functional app
-Vue.component('home_page', {
-    template: `<div class="home_page">
-                    <h class="hp_header">Secure Colab</h>
-                    <a class="hp_desc">One stop for Efficient NSA Security Communications</a>
+Vue.component('home-page', {
+    template: `<div class="home-page">
+                    <div><a class="hp-header">Secure Colab</a></div></br>
+                    <div><a class="hp_desc">One stop for Efficient NSA Security Communications</a></div>
                 </div>`
     }
 )
+Vue.component('task-page', {
+    template: `<div class="task-page">
+                
+                </div>`
+    }
+)
+Vue.component('assessment-page', {
+    template: `<div class="assessment-page">
 
+                </div>`
+    }
+)
+Vue.component('groups-page', {
+    template: `<div class="groups-page">
+
+                </div>`
+    }
+)
+Vue.component('alert-page', {
+    template: `<div class="alerts-page">
+
+                </div>`
+    }
+)
+Vue.component('nav-bar', {
+    template: `<div class="nav-bar">
+                    <ul>
+                        <li @click="nav_func('home')" v-bind:class="{active: nav_home2}"><a href="#home"><b>Home</b></a></li>
+                        <li @click="nav_func('task')" v-bind:class="{active: nav_tasks2}"><a href="#tasks"><b>Tasks</b></a></li>
+                        <li @click="nav_func('assessment')" v-bind:class="{active: nav_jobs2}"><a href="#jobs"><b>Job</b></a></li>
+                        <li @click="nav_func('groups')" v-bind:class="{active: nav_groups2}"><a href="#groups"><b>Groups</b></a></li>
+                        <li @click="nav_func('alert')" v-bind:class="{active: nav_alerts2}"><a href="#alerts"><b>Alerts</b></a></li>
+                    </ul>
+                </div>`,
+    data: function() {
+        return {
+            nav_home2: true,
+            nav_tasks2: false,
+            nav_jobs2: false,
+            nav_groups2: false,
+            nav_alerts2: false,
+        }
+    },
+    methods: {
+        nav_func: function(page) {
+            if (page == 'home') {return this.$root.home_page=true, this.$root.task_page=false, this.$root.assessment_job_page=false, 
+                                this.$root.groups_page=false, this.$root.alert_page=false,
+                                this.$root.nav_home2=true,this.$root.nav_tasks2=false,
+                                this.nav_jobs2=false,this.nav_groups2=false,this.nav_alerts2=false}
+            else if (page == 'task') {return this.$root.home_page=false, this.$root.task_page=true, this.$root.assessment_job_page=false, 
+                                this.$root.groups_page=false, this.$root.alert_page=false,
+                                this.$root.nav_home2=false,this.$root.nav_tasks2=true,
+                                this.nav_jobs2=false,this.nav_groups2=false,this.nav_alerts2=false}
+            else if (page == 'assessment') {return this.$root.home_page=false, this.$root.task_page=false, this.$root.assessment_job_page=true, 
+                                this.$root.groups_page=false, this.$root.alert_page=false,
+                                this.$root.nav_home2=false,this.$root.nav_tasks2=false,
+                                this.nav_jobs2=true,this.nav_groups2=false,this.nav_alerts2=false}
+            else if (page == 'groups') {return this.$root.home_page=false, this.$root.task_page=false, this.$root.assessment_job_page=false, 
+                                this.$root.groups_page=true, this.$root.alert_page=false,
+                                this.$root.nav_home2=false,this.$root.nav_tasks2=false,
+                                this.nav_jobs2=false,this.nav_groups2=true,this.nav_alerts2=false}
+            else if (page == 'alert') {return this.$root.home_page=false, this.$root.task_page=false, this.$root.assessment_job_page=false, 
+                                this.$root.groups_page=false, this.$root.alert_page=true,
+                                this.$root.nav_home2=false,this.$root.nav_tasks2=false,
+                                this.nav_jobs2=false,this.nav_groups2=false,this.nav_alerts2=true}
+        }
+}});
 
 
 
@@ -20,4 +86,4 @@ var app = new Vue({
         groups_page: false,
         alert_page: false,
     }
-})
+});
