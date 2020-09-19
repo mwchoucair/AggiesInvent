@@ -65,7 +65,7 @@ let Module = {
         }
     }
 }
-Vue.componenet('module-page', {
+Vue.component('module-page', {
     template: `<div class=module-page">
 
                 </div>
