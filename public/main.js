@@ -3,15 +3,36 @@ Vue.component('home-page', {
     template: `<div class="home-page">
                     <div><a class="hp-header">Secure Colab</a></div></br>
                     <div><a class="hp_desc">One stop for Efficient NSA Security Communications</a></div>
+                    <div class="cowboy-background"></div>
                 </div>`
     }
 )
 Vue.component('task-page', {
     template: `<div class="task-page">
-                
-                </div>`
+                    <div id="myDIV" class="header">
+                        <h2>Task List</h2></br>
+                        <input type="text" id="myInput" class="input" placeholder="New Task...">
+                        <span @click="newElement()" class="addBtn">Add</span>
+                    </div>
+                    <ul id="myUL" class="task-list">
+                        <li class="list-items" v-for="items in this.$root.task_items" @click="makeChecked()" v-bind:class="{checked: isChecked}">{{ items.task }}</li>
+                    </ul>
+                </div>`,
+    data: function() {
+        return { 
+            isChecked: false,
+        };
+    },
+    methods: {
+        newElement: function() {
+            var Task = document.getElementById('myInput').value;
+            this.$root.task_items.push({task: Task});
+        },
+        makeChecked: function() {
+            this.isChecked=true;
+        }
     }
-)
+})
 Vue.component('assessment-page', {
     template: `<div class="assessment-page">
 
@@ -53,23 +74,23 @@ Vue.component('nav-bar', {
         nav_func: function(page) {
             if (page == 'home') {return this.$root.home_page=true, this.$root.task_page=false, this.$root.assessment_job_page=false, 
                                 this.$root.groups_page=false, this.$root.alert_page=false,
-                                this.$root.nav_home2=true,this.$root.nav_tasks2=false,
+                                this.nav_home2=true,this.nav_tasks2=false,
                                 this.nav_jobs2=false,this.nav_groups2=false,this.nav_alerts2=false}
             else if (page == 'task') {return this.$root.home_page=false, this.$root.task_page=true, this.$root.assessment_job_page=false, 
                                 this.$root.groups_page=false, this.$root.alert_page=false,
-                                this.$root.nav_home2=false,this.$root.nav_tasks2=true,
+                                this.nav_home2=false,this.nav_tasks2=true,
                                 this.nav_jobs2=false,this.nav_groups2=false,this.nav_alerts2=false}
             else if (page == 'assessment') {return this.$root.home_page=false, this.$root.task_page=false, this.$root.assessment_job_page=true, 
                                 this.$root.groups_page=false, this.$root.alert_page=false,
-                                this.$root.nav_home2=false,this.$root.nav_tasks2=false,
+                                this.nav_home2=false,this.nav_tasks2=false,
                                 this.nav_jobs2=true,this.nav_groups2=false,this.nav_alerts2=false}
             else if (page == 'groups') {return this.$root.home_page=false, this.$root.task_page=false, this.$root.assessment_job_page=false, 
                                 this.$root.groups_page=true, this.$root.alert_page=false,
-                                this.$root.nav_home2=false,this.$root.nav_tasks2=false,
+                                this.nav_home2=false,this.nav_tasks2=false,
                                 this.nav_jobs2=false,this.nav_groups2=true,this.nav_alerts2=false}
             else if (page == 'alert') {return this.$root.home_page=false, this.$root.task_page=false, this.$root.assessment_job_page=false, 
                                 this.$root.groups_page=false, this.$root.alert_page=true,
-                                this.$root.nav_home2=false,this.$root.nav_tasks2=false,
+                                this.nav_home2=false,this.nav_tasks2=false,
                                 this.nav_jobs2=false,this.nav_groups2=false,this.nav_alerts2=true}
         }
 }});
@@ -80,10 +101,13 @@ Vue.component('nav-bar', {
 var app = new Vue({
     el: '#app',
     data: {
-        home_page: true,
-        task_page: false,
+        home_page: false,
+        task_page: true,
         assessment_job_page: false,
         groups_page: false,
         alert_page: false,
+        task_items: [
+            {task: ''},
+        ]
     }
 });

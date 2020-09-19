@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 #app {
     height: 100%;
@@ -31,12 +32,24 @@ html, body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+/*
+.home-page .cowboy-background {
+    background-image: url("cowboy2.png");
+    filter: blur(10px);
+    height: 800px;
+    width: 100%;
+    z-index: 1;
+    background-position: center;
+    background-repeat: no-repeat;
+}*/
 .home-page .hp-header {
     font-size: 3em;
 }
+/* #### Navigation Bar #### */
 .nav-bar {
     height: 100%;
     width: 10%;
+    z-index: 5;
 }
 ul {
     list-style-type: none;
@@ -61,9 +74,127 @@ ul {
   li a:hover {
     background-color: #333333;
   }
-  li a:active {
-    background-color: rgb(26, 25, 24);
+  li.active {
+      background: rgb(207, 166, 89);
   }
-  li a.active {
-      background: #8d7c1976;
-  }
+  li.active a {
+      color: white;
+ }
+/* #### Task List ###### */
+/* Remove margins and padding from the list */
+.task-page {
+    color: white;
+    font-size: 2em;
+    display: block;
+    position: absolute;
+    justify-items: center;
+    text-align: center;
+    height: 100%;
+    width: 91%;
+    left: 55%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+.task-page ul {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+}
+/* Style the list items */
+.task-page .task-list {
+    width: 100%;
+}
+.task-page ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: rgb(224, 223, 223);
+    font-size: 18px;
+    transition: 0.2s;
+    color: rgb(65, 64, 64);
+  
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Set all odd list items to a different color (zebra-stripes) */
+.task-page ul li:nth-child(odd) {
+    background: rgb(236, 235, 235);
+}
+/* Darker background-color on hover */
+.task-page ul li:hover {
+    background: white;
+}
+/* When clicked on, add a background color and strike out text */
+.task-page ul li.checked {
+    background: rgba(128, 127, 127, 0.521);
+    color: rgb(43, 42, 42);
+    content: '✓';
+} 
+/* Add a "checked" mark when clicked on */
+.task-page ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+/* Style the close button */
+.task-page .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+} 
+.task-page .close:hover {
+    background-color: #f44336;
+    color: white;
+} 
+/* Style the header */
+.task-page .header {
+    background-color: #5c5b5b;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+} 
+/* Clear floats after the header */
+.task-page .header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Style the input */
+.task-page .input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+/* Style the "Add" button */
+.task-page .addBtn {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0px;
+}
+.task-page .addBtn:hover {
+    background-color: #bbb;
+}
