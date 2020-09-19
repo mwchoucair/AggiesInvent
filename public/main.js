@@ -1,7 +1,7 @@
 // file to put the functional app
 Vue.component('home-page', {
     template: `<div class="home-page">
-                    <div><a class="hp-header">Secure Colab</a></div></br>
+                    <div><a class="hp-header">Secure Collab</a></div></br>
                     <div><a class="hp_desc">One stop for Efficient NSA Security Communications</a></div>
                     <div class="cowboy-background"></div>
                 </div>`
@@ -15,7 +15,7 @@ Vue.component('task-page', {
                         <span @click="newElement()" class="addBtn">Add</span>
                     </div>
                     <ul id="myUL" class="task-list">
-                        <li class="list-items" v-for="items in this.$root.task_items" @click="makeChecked()" v-bind:class="{checked: isChecked}">{{ items.task }}</li>
+                        <li class="list-items" v-for="items in this.$root.task_items" @click="makeChecked(items)" v-bind:class="{checked: isChecked}">{{ items.task }}</li>
                     </ul>
                 </div>`,
     data: function() {
@@ -28,17 +28,49 @@ Vue.component('task-page', {
             var Task = document.getElementById('myInput').value;
             this.$root.task_items.push({task: Task});
         },
-        makeChecked: function() {
-            this.isChecked=true;
+        makeChecked: function(item) {
+            console.log(item);
         }
     }
 })
 Vue.component('assessment-page', {
     template: `<div class="assessment-page">
-
-                </div>`
+                    <div class="page-title"><a class="page-title-text">My Modules</a></div>
+                    <div class="add-button" @click="addModule()"><img src="add.png"/></div>
+                    <ul>
+                        <li v-for="item in this.$root.modules"><componenet :is="item"></componenet></li>
+                    </ul>
+                </div>`,
+    methods: {
+        addModule: function() {
+            this.$root.modules.push(Module);
+        }
     }
-)
+})
+let Module = {
+    template: `<div class="module">
+                    <div @click="inputTitle()" class="module-title"><input type="text" id="ModuleInput" class="input" placeholder="Title..."></div>
+                    </br></br></br></br>
+                    <div v-show="showOpen" @click="openModule()" class="open-module">Open Module</div>
+                </div>`,
+    data: function() {
+        return {showOpen: false}
+    },
+    methods: {
+        openModule: function() {
+            this.$root.module_page=true;
+        },
+        inputTitle: function() {
+            this.showOpen=true;
+        }
+    }
+}
+Vue.componenet('module-page', {
+    template: `<div class=module-page">
+
+                </div>
+    `
+})
 Vue.component('groups-page', {
     template: `<div class="groups-page">
 
@@ -101,13 +133,17 @@ Vue.component('nav-bar', {
 var app = new Vue({
     el: '#app',
     data: {
-        home_page: false,
-        task_page: true,
+        home_page: true,
+        task_page: false,
         assessment_job_page: false,
         groups_page: false,
         alert_page: false,
         task_items: [
             {task: ''},
-        ]
+        ],
+        modules: [
+
+        ],
+        module_page: false,
     }
 });
